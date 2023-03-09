@@ -146,6 +146,7 @@ def sl_once():
 
     for i in want:
         if i in allEffect:
+            print("出货")
             raise Exception("找到了")
     
 
