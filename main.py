@@ -7,6 +7,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 from get_game import get_GAME
+from getscreennew import gethwnd
 from keyboardsim import press_str, pressdownfor_str
 
 from cnocr import CnOcr, consts
@@ -49,6 +50,10 @@ def save(x):
 
 
 def getWoLong():
+    hw = gethwnd("Wo Long: Fallen Dynasty")
+    if hw =='0' or hw == 0:
+        print("闪退辣!")
+        raise Exception("闪退")
     imgo = get_GAME("Wo Long: Fallen Dynasty")
     img720p = cv2.resize(imgo, (1920, 1080))
     return img720p
