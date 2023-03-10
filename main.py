@@ -159,7 +159,42 @@ def InfinityX():
     while True:
         sl_once()
         time.sleep(1)
-
+def slHushi():
+    while True:
+        pressdownfor_str('a',20.037-19.522)
+        pressdownfor_str('w',22.77-20.039)
+        pressdownfor_str('a',23.343-22.907)
+        pressdownfor_str('w',26.054-23.419)
+        pressdownfor_str('d',26.509-26.056)
+        pressdownfor_str('w',27.46-26.529)
+        pressdownfor_str('d',28.29-27.382)
+        pressdownfor_str('s',28.56-28.405+29.191-29.0729)
+        press_str('esc')
+        time.sleep(1)
+        press_str('k')
+        time.sleep(0.5)
+        press_str('k')
+        time.sleep(0.5)
+        press_str('k')
+        time.sleep(0.5)
+        press_str('s')
+        time.sleep(0.1)
+        press_str('a')
+        time.sleep(0.1)
+        press_str('w')
+        time.sleep(0.1)
+        press_str('k')
+        time.sleep(12)
+        press_str('e')
+        time.sleep(1)
+        pressdownfor_str('w', 0.5)
+        pressdownfor_str('d', 0.5)
+        pressdownfor_str('w', 0.5)
+        pressdownfor_str('d', 0.5)
+        while not findContinue():
+            time.sleep(0.5)
+        press_str('k')
+        time.sleep(2)
 
 
 if __name__ == '__main__':
@@ -178,6 +213,7 @@ if __name__ == '__main__':
 
     # 找继续按钮
     l.bindKeyAsync('f6', findContinue)
+    l.bindKeyAsync('f5', slHushi,"刷饰品")
     l.join()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
