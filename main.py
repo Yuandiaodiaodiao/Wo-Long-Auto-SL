@@ -36,10 +36,6 @@ def perpareimg(img, argmap, show=False):
 ocr = CnOcr()
 
 
-
-
-
-
 def save(x):
     try:
         with open('WOLONG_ARM.txt', 'a', encoding='utf-8')as f:
@@ -51,14 +47,16 @@ def save(x):
 
 def getWoLong():
     hw = gethwnd("Wo Long: Fallen Dynasty")
-    if hw =='0' or hw == 0:
+    if hw == '0' or hw == 0:
         print("闪退辣!")
         raise Exception("闪退")
     imgo = get_GAME("Wo Long: Fallen Dynasty")
     img720p = cv2.resize(imgo, (1920, 1080))
     return img720p
+
+
 def findContinue():
-    img=getWoLong()
+    img = getWoLong()
     h = 0.05
     t = 0.875
     l = 0.9
@@ -66,41 +64,40 @@ def findContinue():
     imgcut = [t, t + h, l, l + w]
     img = perpareimg(img, imgcut, False)
     res = ocr.ocr(img)
-    arr=list(map(lambda x:"".join(x),res))
-    s="".join(arr)
-    return ('继' in s) or('续' in s) or ('A' in s)
+    arr = list(map(lambda x: "".join(x), res))
+    s = "".join(arr)
+    return ('继' in s) or ('续' in s) or ('A' in s)
+
 
 def readArmor():
-    img720p=getWoLong()
-    h=0.15
-    t=0.605
-    l=0.391
-    w=0.2
-    imgcut = [t, t+h, l, l+w]
+    img720p = getWoLong()
+    h = 0.15
+    t = 0.605
+    l = 0.391
+    w = 0.2
+    imgcut = [t, t + h, l, l + w]
     img = perpareimg(img720p, imgcut, False)
 
     for i in range(img.shape[0]):
         for j in range(img.shape[1]):
-            col=img[i][j]
-            maxc=max(col[0],col[1],col[2])
-            img[i][j][0]=maxc
-            img[i][j][1]=maxc
-            img[i][j][2]=maxc
-
+            col = img[i][j]
+            maxc = max(col[0], col[1], col[2])
+            img[i][j][0] = maxc
+            img[i][j][1] = maxc
+            img[i][j][2] = maxc
 
     img2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-
-    img2=cv2.adaptiveThreshold(img2, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 81, -80)
-    plt.imshow(img2,cmap='Greys_r')
+    img2 = cv2.adaptiveThreshold(img2, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 81, -80)
+    plt.imshow(img2, cmap='Greys_r')
     plt.show()
     res = ocr.ocr(img2)
 
-    arr=list(map(lambda x:"".join(x),res))
+    arr = list(map(lambda x: "".join(x), res))
     return arr
 
 
-def sl_once():
+def remake():
     press_str('esc')
     time.sleep(0.5)
     press_str('esc')
@@ -108,7 +105,7 @@ def sl_once():
     for i in range(5):
         time.sleep(0.03)
         press_str('d')
-    
+
     press_str('k')
     time.sleep(0.5)
     press_str('w')
@@ -120,7 +117,7 @@ def sl_once():
     press_str('k')
 
     time.sleep(5)
-    for i in range(10*10):
+    for i in range(10 * 10):
         time.sleep(0.1)
         press_str('k')
     while not findContinue():
@@ -128,9 +125,14 @@ def sl_once():
 
     time.sleep(0.5)
     press_str('k')
+
+
+def sl_once():
+
+    remake()
     time.sleep(1.5)
-    pressdownfor_str('d',1.3)
-    pressdownfor_str('w',0.5)
+    pressdownfor_str('d', 1.3)
+    pressdownfor_str('w', 0.5)
     for i in range(3):
         time.sleep(0.3)
         press_str('e')
@@ -142,10 +144,10 @@ def sl_once():
     press_str('d')
     press_str('d')
     time.sleep(0.1)
-    res=readArmor()
-    want=["套装效果","道君之"]
+    res = readArmor()
+    want = ["套装效果", "道君之"]
 
-    allEffect=",".join(res)
+    allEffect = ",".join(res)
     print(allEffect)
     save(allEffect)
 
@@ -153,22 +155,24 @@ def sl_once():
         if i in allEffect:
             print("出货")
             raise Exception("找到了")
-    
+
 
 def InfinityX():
     while True:
         sl_once()
         time.sleep(1)
+
+
 def slHushi():
     while True:
-        pressdownfor_str('a',20.037-19.522)
-        pressdownfor_str('w',22.77-20.039)
-        pressdownfor_str('a',23.343-22.907)
-        pressdownfor_str('w',26.054-23.419)
-        pressdownfor_str('d',26.509-26.056)
-        pressdownfor_str('w',27.46-26.529)
-        pressdownfor_str('d',28.29-27.382)
-        pressdownfor_str('s',28.56-28.405+29.191-29.0729)
+        pressdownfor_str('a', 20.037 - 19.522)
+        pressdownfor_str('w', 22.77 - 20.039)
+        pressdownfor_str('a', 23.343 - 22.907)
+        pressdownfor_str('w', 26.054 - 23.419)
+        pressdownfor_str('d', 26.509 - 26.056)
+        pressdownfor_str('w', 27.46 - 26.529)
+        pressdownfor_str('d', 28.29 - 27.382)
+        pressdownfor_str('s', 28.56 - 28.405 + 29.191 - 29.0729)
         press_str('esc')
         time.sleep(1)
         press_str('k')
@@ -203,7 +207,7 @@ if __name__ == '__main__':
     l = KListener()
 
     # 自动sl
-    l.bindKeyAsync('f8', InfinityX,"自动SL")
+    l.bindKeyAsync('f8', InfinityX, "自动SL")
 
     # 截图debug
     l.bindKeyAsync('f9', readArmor)
@@ -213,7 +217,8 @@ if __name__ == '__main__':
 
     # 找继续按钮
     l.bindKeyAsync('f6', findContinue)
-    l.bindKeyAsync('f5', slHushi,"刷饰品")
+    l.bindKeyAsync('f5', slHushi, "刷饰品")
+    l.bindKeyAsync('f4', remake, "快速sl")
     l.join()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
