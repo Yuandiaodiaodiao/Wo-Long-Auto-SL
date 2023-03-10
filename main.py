@@ -128,7 +128,7 @@ def sl_once():
 
     time.sleep(0.5)
     press_str('k')
-    time.sleep(1)
+    time.sleep(1.5)
     pressdownfor_str('d',1.3)
     pressdownfor_str('w',0.5)
     for i in range(3):
